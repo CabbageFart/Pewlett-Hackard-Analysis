@@ -39,7 +39,7 @@ SELECT DISTINCT ON (e.emp_no) e.emp_no,
 	de.from_date,
 	de.to_date,
 	t.title
-INTO mentorship_eligibilty
+--INTO mentorship_eligibilty
 FROM employees AS e
 LEFT JOIN dept_emp AS de
 ON (e.emp_no = de.emp_no)
@@ -49,5 +49,28 @@ WHERE (t.to_date = '9999-01-01')
 AND (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')
 ;
 
-select * from dept_emp
-select * from titles
+select * from departments
+select * from salaries
+
+
+SELECT DISTINCT ON (emp_no)emp_no,
+	first_name,
+	last_name,
+	title
+From mentorship_eligibilty
+WHERE title IN ('Senior Engineer');
+
+SELECT DISTINCT ON (e.emp_no) e.emp_no,
+	e.gender,
+	e.hire_date,
+	s.salary,
+	t.title
+INTO gender_salaries
+FROM employees AS e
+LEFT JOIN salaries AS s
+ON (e.emp_no = s.emp_no)
+LEFT JOIN titles AS t
+ON (e.emp_no = t.emp_no)
+--WHERE title IN ('Senior Engineer');
+	
+select * from gender_salaries
